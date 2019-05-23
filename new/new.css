@@ -40,17 +40,22 @@ input[type=text] {
     border: 3px #c0c0c0 solid;
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 15px;
+    height: 17.5px;
+    margin: 3px;
 }
 
 input[type=submit] {
     border: 3px #c0c0c0 solid;
-    background-color: #101010;
     color: #c0c0c0;
-    padding: 10px;
-    margin-left: 40px;
+    background-color: #101010;
+    border: 3px #c0c0c0 solid;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 15px;
+    /* padding: 5px; */
+    /* margin-left: 40px;
     margin-right: 40px;
     margin-top: 21%;
-    margin-bottom: 21%;
+    margin-bottom: 21%; */
 }
 
 input[type=submit]:hover {
@@ -58,4 +63,14 @@ input[type=submit]:hover {
     background-color: #c0c0c0;
     color: #101010;
     transition-duration: 0.75s;
+}
+
+.title {
+    letter-spacing: 3px;
+    background-color: #101010;
+    color: #c0c0c0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    font-size: 30px;
 }
