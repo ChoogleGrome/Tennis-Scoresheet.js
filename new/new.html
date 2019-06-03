@@ -3,19 +3,24 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="new.css">
-        <script src="new.js"></script>
         <title>New Tournament</title> 
     </head>
     <body>
+        <script src="new.js"></script>
         <h1 class="title"> NEW TOURNAMENT </h1>
-        Tournament Name: <input type="text" id="name" autocomplete="off">
-        <BR>
-        Number of Teams <input type="text" id="team_num" autocomplete="off">
-        <BR>
-        Games in Tournament <input type="text" id="tournament_num" autocomplete="off">
-        <BR>
-        <input type="submit" value="Submit" onclick=onTournamentCreate()>
-        <BR>
-        <a id=alert> </a>
+        <div>
+            <div>Tournament Name: <input type="text" id="name" autocomplete="off"></div>
+            <!-- <BR> -->
+            <div>Number of Teams: <input type="text" id="team_num" autocomplete="off"></div>
+            <!-- <BR> -->
+            <div>Games in Tournament: <input type="text" id="tournament_num" autocomplete="off"></div>
+            <!-- <BR> -->
+            <div><input type="submit" value="Submit" onclick=onTournamentCreate()></div>
+            <!-- <BR> -->
+            <div><a id="alert"> </a></div>
+            <div id="created_inputs">
+                <!-- INPUTS SHOULD EXIST HERE -->
+            </div>
+        </div> 
     </body>
 </html>

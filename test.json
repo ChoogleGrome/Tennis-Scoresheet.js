@@ -9,7 +9,9 @@
             {"player_name":[
                 null,
                 "aquif"
-            ]}
+            ]},
+            {"team_games": null},
+            {"team_sets": null}
         ]},
 
         {"team_2": [
