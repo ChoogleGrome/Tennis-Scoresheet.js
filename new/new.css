@@ -74,3 +74,7 @@ input[type=submit]:hover {
     text-align: center;
     font-size: 30px;
 }
+
+.bold {
+    font-weight: bold;
+}
