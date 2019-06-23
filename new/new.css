@@ -78,3 +78,7 @@ input[type=submit]:hover {
 .bold {
     font-weight: bold;
 }
+
+.underline {
+    text-decoration: underline;
+}
