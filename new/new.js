@@ -157,7 +157,7 @@ function onPlayerCreate() {
 
     for (y = 0; y < document.getElementById("team_num").value; y = y + 1) {
         if (document.getElementById("team_players" + (y + 1)).value == "") {
-            document.getElementById("alert_3").innerHTML = "PLEASE INPUT NUMBER OF 4PLAYERS IN TEAMS"
+            document.getElementById("alert_3").innerHTML = "PLEASE INPUT NUMBER OF PLAYERS IN TEAMS"
             return
         }
 
@@ -254,6 +254,7 @@ function onPlayerNameCreate() {
 
         for (p = 0; p < data[4].team[y][1].player_num; p = p + 1) {
             data[4].team[y][2].player[p] = document.getElementById("team" + (y + 1) + "_player" + (p + 1)).value
+            data[4].team[y][3] = {"team_score": 0}
         }
     }
 
@@ -370,7 +371,6 @@ function onFinalSubmit() {
     var a
     var a_text
 
-    var input
     var br
     var div = document.getElementById("created_inputs")
 
@@ -416,40 +416,86 @@ function onFinalSubmit() {
         }
     }
 
-    for (n = 0; n < data[4].team.length; n = n + 1) {
-        data[4].team[n][3] = {"team_score": 0}
+    // for (n = 0; n < data[4].team.length; n = n + 1) {
+    //     for (x = 0; x < data[5].tournament.matches.length; x = x + 1) {
+    //         for (y = 0; y < 5; y = y + 1) {
+    //             for (p = 0; p < 2; p = p + 1) {
+    //                 console.log(data[4].team[team_check][3].team_score)
+    //                 console.log(data[5].tournament.matches[x].games[y].players[p][2].score)
+    //                 console.log(data[4].team[team_check][0].team_name)
+    //                 console.log(data[5].tournament.matches[x].games[y].players[p][1].team)
 
-        for (x = 0; x < data[5].tournament.matches.length; x = x + 1) {
-            for (y = 0; y < 5; y = y + 1) {
-                for (p = 0; p < 2; p = p + 1) {
-                    if (data[5].tournament.matches[x].games[y].players[p].team == data[4].team[n].team_name) {
-                        data[4].team[n][3].team_score = data[4].team[n][3].team_score + data[5].tournament.matches[x].games[y].players[p][2].score
-                    }
-                }
+    //                 while (check == false) {
+    //                     if (data[5].tournament.matches[x].games[y].players[p][1].team == data[4].team[team_check][0].team_name) {
+    //                         console.log("Calculated")
+    //                         data[4].team[team_check][3].team_score = data[4].team[team_check][3].team_score + data[5].tournament.matches[x].games[y].players[p][2].score
+    //                         check = true
+    //                     }
+
+    //                     else {
+    //                         team_check = team_check + 1
+    //                         console.log(team_check)
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    var check = false
+    var player_check = 0
+    var game_check = 0
+    var match_check = 0
+    var team_check = 0
+
+    while (all_check == true) {
+        while (check == false) {
+            if (data[5].tournament.matches[match_check].games[game_check].players[player_check][1].team == data[4].team[team_check][0].team_name) {
+                console.log("Calculated")
+                data[4].team[team_check][3].team_score = data[4].team[team_check][3].team_score + data[5].tournament.matches[match_check].games[game_check].players[player_check][2].score
+                check = true
             }
+
+            else {
+                player_check = player_check + 1
+
+                if (player_check == 2) {
+                    player_check = 0
+                    game_check = game_check + 1
+                }
+
+                if (game_check == 5) {
+                    game_check = 0
+                    match_check = match_check + 1
+                }
+
+                if (match_check == data[5].tournament.matches.length) {
+                    match_check = 0
+                    team_check = team_check + 1
+                }
+            } 
         }
     }
 
-    $.ajax({
-        url: "https://api.myjson.com/bins",
-        type: "POST",
-        data: data,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(data, textStatus, jqXHR) {
-            console.log(data.uri)
-        }
-    })
-    console.log(temp)
+    var key = makeid(5)
+    localStorage.setItem(key, JSON.stringify(data))
+
+    a = document.createElement("a")
+    br = document.createElement("br")
+    a_text = document.createTextNode("KEY TO ACCESS LEADERBOARD IS: " + key)
+    a.appendChild(a_text)
+    setAttribute(a, {"class": "bold"})
+    div.appendChild(a)
+    div.appendChild(br)
+
+    a = document.createElement("a")
+    a_text = document.createTextNode("Continue to Leaderboard")
+    a.appendChild(a_text)
+    setAttribute(a, {"href": "../existing/existing.html"})
+    div.appendChild(a)
+
     console.log(data)
 }
-
-// function json_parse(data) {
-//     var json = JSON.stringify(data)
-//     var json_p = JSON.parse(json)
-
-//     return json_p
-// }
 
 function setAttribute(el, attrs) {
     for (var key in attrs) {
@@ -466,4 +512,17 @@ function arrSearch (val, opp) {
         }
     }
     return false
+}
+
+function makeid(length) {
+    var res = ""
+    var char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    var char_len = char.length
+    var i
+
+    for (i = 0; i < length; i = i + 1) {
+        res = res + char.charAt(Math.floor(Math.random() * char_len))
+    }
+
+    return res
 }
