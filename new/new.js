@@ -448,30 +448,35 @@ function onFinalSubmit() {
     var match_check = 0
     var team_check = 0
 
-    while (all_check == true) {
-        while (check == false) {
-            if (data[5].tournament.matches[match_check].games[game_check].players[player_check][1].team == data[4].team[team_check][0].team_name) {
-                console.log("Calculated")
-                data[4].team[team_check][3].team_score = data[4].team[team_check][3].team_score + data[5].tournament.matches[match_check].games[game_check].players[player_check][2].score
-                check = true
-            }
+    for (team_check = 0; team_check < data[4].team.length; team_check = team_check + 1 ) {
+        check = false
 
-            else {
-                player_check = player_check + 1
+        for (n = 0; n < (5 * 2 * data[5].tournament.matches.length); n = n + 1) {
+            check = false
 
-                if (player_check == 2) {
-                    player_check = 0
-                    game_check = game_check + 1
+            while (check == false) {
+                if (data[5].tournament.matches[match_check].games[game_check].players[player_check][1].team == data[4].team[team_check][0].team_name) {
+                    console.log("Calculated")
+                    data[4].team[team_check][3].team_score = data[4].team[team_check][3].team_score + data[5].tournament.matches[match_check].games[game_check].players[player_check][2].score
+                    check = true
                 }
 
-                if (game_check == 5) {
-                    game_check = 0
-                    match_check = match_check + 1
-                }
+                else {
+                    player_check = player_check + 1
 
-                if (match_check == data[5].tournament.matches.length) {
-                    match_check = 0
-                    team_check = team_check + 1
+                    if (player_check == 2) {
+                        player_check = 0
+                        game_check = game_check + 1
+                    }
+
+                    if (game_check == 5) {
+                        game_check = 0
+                        match_check = match_check + 1
+                    }
+
+                    if (match_check == data[5].tournament.matches.length) {
+                        match_check = 0
+                    }
                 }
             } 
         }
@@ -479,6 +484,10 @@ function onFinalSubmit() {
 
     var key = makeid(5)
     localStorage.setItem(key, JSON.stringify(data))
+
+    data[0].key = key
+
+    localStorage.setItem("latest", key)
 
     a = document.createElement("a")
     br = document.createElement("br")

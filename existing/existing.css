@@ -82,3 +82,9 @@ input[type=submit]:hover {
 .underline {
     text-decoration: underline;
 }
+
+.winner {
+    font-weight: bold;
+    font-size: 25px;
+    text-transform: capitalize;
+}
