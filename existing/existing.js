@@ -1,4 +1,4 @@
-if (localStorage.getItem("latest") !== null) {
+if (sessionStorage.getItem("latest") !== null) {
     document.getElementById("key").value = localStorage.getItem("latest")
 }
 

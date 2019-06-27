@@ -487,7 +487,7 @@ function onFinalSubmit() {
 
     data[0].key = key
 
-    localStorage.setItem("latest", key)
+    sessionStorage.setItem("latest", key)
 
     a = document.createElement("a")
     br = document.createElement("br")
