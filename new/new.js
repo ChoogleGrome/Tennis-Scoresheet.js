@@ -4,11 +4,6 @@ var data = []
 var b
 
 function onTournamentCreate() {
-    // var bin_link = "https://api.myjson.com/bins"
-    // var content_type = "application/json; charset=utf-8"
-    // var data_type = "json"
-    // var post = "POST"
-
     var team_num = document.getElementById("team_num").value
     var tournament_num = document.getElementById("tournament_num").value
     var name = document.getElementById("name").value
@@ -487,7 +482,7 @@ function onFinalSubmit() {
 
     data[0].key = key
 
-    sessionStorage.setItem("latest", key)
+    localStorage.setItem("latest", key)
 
     a = document.createElement("a")
     br = document.createElement("br")
