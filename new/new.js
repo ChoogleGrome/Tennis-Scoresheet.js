@@ -3,6 +3,8 @@
 var data = []
 var b
 
+// First Fucntion
+// After First Button Click
 function onTournamentCreate() {
     var team_num = document.getElementById("team_num").value
     var tournament_num = document.getElementById("tournament_num").value
@@ -75,6 +77,8 @@ function onTournamentCreate() {
     div.appendChild(a)
 }
 
+// Second Function
+// After inital data created
 function onTeamCreate() {
     var n
     var n1
@@ -139,9 +143,11 @@ function onTeamCreate() {
     div.appendChild(a)
 }
 
+// Third Function
+// Executed after team creation
 function onPlayerCreate() {
     var n
-    var x
+    var x 
     var y
 
     var input
@@ -211,6 +217,9 @@ function onPlayerCreate() {
     div.appendChild(a)
 }
 
+// Fourth Function
+// Used for score input
+// Takes a lot of data from previous functions
 function onPlayerNameCreate() {
     var a
     var a_text
@@ -362,6 +371,9 @@ function onPlayerNameCreate() {
     div.appendChild(a)
 }
 
+// Final submition
+// Does ranking calculations
+// Sends JSON data to localStorage using an id created by makeid()
 function onFinalSubmit() {
     var a
     var a_text
@@ -372,9 +384,6 @@ function onFinalSubmit() {
     var n
     var x
     var y
-    var p
-
-    var temp = []
 
     for (n = 0; n < data[3].tournament_num; n = n + 1) {
         for (x = 0; x < 5; x = x + 1) {
@@ -411,6 +420,8 @@ function onFinalSubmit() {
         }
     }
 
+    // Original Algorithm for ranking, made easier utilising while loops
+
     // for (n = 0; n < data[4].team.length; n = n + 1) {
     //     for (x = 0; x < data[5].tournament.matches.length; x = x + 1) {
     //         for (y = 0; y < 5; y = y + 1) {
@@ -436,12 +447,15 @@ function onFinalSubmit() {
     //         }
     //     }
     // }
+    
 
     var check = false
     var player_check = 0
     var game_check = 0
     var match_check = 0
     var team_check = 0
+
+    // New ranking algorithm
 
     for (team_check = 0; team_check < data[4].team.length; team_check = team_check + 1 ) {
         check = false
@@ -501,12 +515,15 @@ function onFinalSubmit() {
     console.log(data)
 }
 
+// sets HTML DOM attributes
+// Cuts down on usage of setAttribute()
 function setAttribute(el, attrs) {
     for (var key in attrs) {
         el.setAttribute(key, attrs[key])
     }
 }
 
+// Searches array and returns key when completed
 function arrSearch (val, opp) {
     if (opp == "teamName") {
         for (var i = 0; i < data[4].team.length; i = i + 1) {
@@ -518,6 +535,7 @@ function arrSearch (val, opp) {
     return false
 }
 
+// Creates random id for localStorage
 function makeid(length) {
     var res = ""
     var char = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"

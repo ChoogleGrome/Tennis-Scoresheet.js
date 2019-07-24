@@ -47,7 +47,7 @@ function onKeySubmit() {
     console.log(sorted)
 
     sorted = sorted.sort(function (a, b) {
-        return b[3].team_score - a[3].team_score
+        return b[3].team_score- a[3].team_score
     })
     console.log(sorted)
 
